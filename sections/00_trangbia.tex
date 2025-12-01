@@ -1,54 +1,68 @@
 % Tệp: sections/00_trangbia.tex
-% Cập nhật theo layout của hình ảnh_a4c0bc.png
-% Sử dụng font Sans-Serif (\sffamily) chỉ cho trang bìa này
+
+% --- VẼ KHUNG VIỀN TRANG BÌA ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Khung ngoài (nét đậm) - Cách lề trái 3cm, các lề khác 2cm
+    \draw[line width=2pt] 
+        ($(current page.north west) + (3.0cm,-2.0cm)$) 
+        rectangle 
+        ($(current page.south east) + (-2.0cm,2.0cm)$);
+        
+    % Khung trong (nét mảnh) - Cách khung ngoài 0.15cm
+    \draw[line width=0.5pt] 
+        ($(current page.north west) + (3.15cm,-2.15cm)$) 
+        rectangle 
+        ($(current page.south east) + (-2.15cm,2.15cm)$);
+\end{tikzpicture}
+% -------------------------------
+
 {\sffamily
 \centering
 
-% --- Phần đầu (Tên trường, khoa) ---
+% --- Phần đầu ---
 {\large \bfseries TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI \par}
 {\large \bfseries THÀNH PHỐ HỒ CHÍ MINH \par}
 {\large \bfseries VIỆN CÔNG NGHỆ THÔNG TIN VÀ ĐIỆN, ĐIỆN TỬ \par}
 
+\vspace{1.0cm} % [ĐÃ GIẢM] Từ 1.5cm xuống 1.0cm
 
 % --- Logo ---
-% !!! GHI CHÚ: Bạn cần tự thêm file logo (ví dụ: uth_logo.png) 
-% vào thư mục dự án và chỉnh lại tên file trong lệnh \includegraphics
-\includegraphics[width=8cm]{img/logoUTH.jpg} \par
+% [ĐÃ GIẢM] Kích thước từ 6cm xuống 5.5cm để tiết kiệm chỗ
+\includegraphics[width=5.5cm]{img/logoUTH.jpg} \par
+
+\vspace{1.0cm} % [ĐÃ GIẢM] Từ 1.5cm xuống 1.0cm
 
 % --- Tên báo cáo ---
-{\large \bfseries BÁO CÁO ĐỒ ÁN\par}
-\vspace*{0.5cm}
+{\fontsize{20pt}{24pt}\selectfont \bfseries BÁO CÁO ĐỒ ÁN\par}
+\vspace*{0.5cm} % [ĐÃ GIẢM] Từ 1cm xuống 0.5cm
 
 {\large \bfseries ĐỀ TÀI: \par}
-{\large \bfseries [StuShare-ỨNG DỤNG CHIA SẺ TÀI LIỆU] \par}
-\vspace*{0.5cm}
+{\fontsize{16pt}{19.2pt}\selectfont \bfseries XÂY DỰNG ỨNG DỤNG CHIA SẺ TÀI LIỆU \par}
+{\fontsize{16pt}{19.2pt}\selectfont \bfseries STUSHARE TRÊN ANDROID \par}
+\vspace*{1.5cm} % [ĐÃ GIẢM] Từ 2cm xuống 1.5cm
 
-{\large \bfseries Sinh Viên Thực Hiện \par}
-\vspace*{0.5cm}
+% --- Thông tin sinh viên & GVHD ---
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        \multicolumn{2}{l}{\large \textbf{GIÁO VIÊN HƯỚNG DẪN:}} \\
+        & \large ThS. [Tên GVHD] \\[0.6cm] % [ĐÃ GIẢM] Khoảng cách dòng từ 1cm xuống 0.6cm
+        
+        \multicolumn{2}{l}{\large \textbf{SINH VIÊN THỰC HIỆN:}} \\
+        \large 1. Đào Vũ Dũng & \large MSSV: 067205001514 \\
+        \large 2. [Tên SV 2] & \large MSSV: [Số MSSV] \\
+        \large 3. [Tên SV 3] & \large MSSV: [Số MSSV] \\
+        
+        \multicolumn{2}{l}{\vspace{0.3cm}} \\ % [ĐÃ GIẢM]
+        \multicolumn{2}{l}{\large \textbf{LỚP:} [Tên lớp của bạn]} 
+    \end{tabular}
+\end{table}
 
-% --- Thông tin sinh viên (2 cột) ---
-\begin{minipage}[t]{0.45\textwidth}
-    \raggedright % Căn lề trái
-    \large
-    \textbf{Họ Và Tên} \par
-    Đào Vũ Dũng \par
-    [Họ và tên của bạn] \par
-    [Họ và tên của bạn] \par
-    \vspace*{0.5cm}
-    \textbf{Giáo Viên Hướng Dẫn} \par
-    [Lớp của bạn] \par
-\end{minipage}
-\hfill % Đẩy 2 cột ra xa nhau
-\begin{minipage}[t]{0.45\textwidth}
-    \raggedright % Căn lề trái
-    \large
-    \textbf{Mã số sinh viên} \par
-    067205001514 \par
-    [Mã số sinh viên của bạn] \par
-    [Mã số sinh viên của bạn] \par
-\end{minipage}
+\vfill % Tự động đẩy xuống đáy (nhưng không đẩy qua trang sau)
 
-\vfill % Đẩy nội dung xuống cuối trang
-{\large \bfseries Hồ Chí Minh, Ngày 14-11-2025}
-\vspace*{1cm} % Thêm khoảng cách nhỏ ở cuối
+% --- Ngày tháng ---
+{\large \bfseries TP. HỒ CHÍ MINH, NĂM 2025}
+
+% [QUAN TRỌNG] Giảm khoảng cách cuối trang để không bị đẩy
+\vspace*{1cm} 
 }

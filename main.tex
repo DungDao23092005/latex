@@ -2,14 +2,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --- CẤU HÌNH CƠ BẢN ---
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Dùng cỡ chữ 13pt (extreport hỗ trợ tốt các cỡ chữ lạ)
-\documentclass[13pt, a4paper, oneside]{extreport}
+% 1. Cỡ chữ 13pt.
+% 2. twoside: Cấu hình để in 2 mặt
+% 3. draft: Chế độ nháp -> Xóa chữ "draft" khi nộp bài để hiện ảnh.
+\documentclass[13pt, a4paper, twoside, draft]{extreport}
 
-% Gói hỗ trợ tiếng Việt và Font Times New Roman
+% Gói hỗ trợ tiếng Việt
 \usepackage[utf8]{inputenc}
 \usepackage[T5]{fontenc}
 \usepackage[vietnamese]{babel}
-\usepackage{lmodern}
+
+% --- FONT CHỮ ---
+\usepackage{newtxtext} 
 \usepackage{newtxmath}
 
 \usepackage{listings}
@@ -22,28 +26,27 @@
 
 % Cấu hình hiển thị code (Style)
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
+    backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize, % Font monospaced nhỏ
-    breakatwhitespace=false,         
-    breaklines=true,                 % Tự động xuống dòng nếu code quá dài
-    captionpos=b,                    % Caption nằm dưới
-    keepspaces=true,                 
-    numbers=left,                    % Đánh số dòng bên trái
-    numbersep=5pt,  
-    showspaces=false,                
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
+    showtabs=false,
     tabsize=2,
-    frame=single,                    % Khung viền quanh code
-    extendedchars=true,              % Hỗ trợ ký tự đặc biệt
+    frame=single,
+    extendedchars=true,
     inputencoding=utf8,
     literate={à}{{\`a}}1 {ả}{{\'a}}1 {ã}{{\~a}}1 {á}{{\'a}}1 {ạ}{{\d{a}}}1
-         {ă}{{\u{a}}}1 {ằ}{{\`a}}1 {ẳ}{{\'a}}1 {ẵ}{{\~a}}1 {ắ}{{\'a}}1 {ặ}{{\d{a}}}1
-         {â}{{\^a}}1 {ầ}{{\`a}}1 {ẩ}{{\'a}}1 {ẫ}{{\~a}}1 {ấ}{{\'a}}1 {ậ}{{\d{a}}}1
+         {ă}{{\u{a}}}1 {ằ}{{\`a}}1 {ẳ}{{\'a}}1 {ẵ}{{\~a}}1 {ấ}{{\'a}}1 {ậ}{{\d{a}}}1
          {è}{{\`e}}1 {ẻ}{{\'e}}1 {ẽ}{{\~e}}1 {é}{{\'e}}1 {ẹ}{{\d{e}}}1
          {ê}{{\^e}}1 {ề}{{\`e}}1 {ể}{{\'e}}1 {ễ}{{\~e}}1 {ế}{{\'e}}1 {ệ}{{\d{e}}}1
          {ì}{{\`i}}1 {ỉ}{{\'i}}1 {ĩ}{{\~i}}1 {í}{{\'i}}1 {ị}{{\d{i}}}1
@@ -53,7 +56,7 @@
          {ù}{{\`u}}1 {ủ}{{\'u}}1 {ũ}{{\~u}}1 {ú}{{\'u}}1 {ụ}{{\d{u}}}1
          {ư}{{\uw}}1 {ừ}{{\`u}}1 {ử}{{\'u}}1 {ữ}{{\~u}}1 {ứ}{{\'u}}1 {ự}{{\d{u}}}1
          {ỳ}{{\`y}}1 {ỷ}{{\'y}}1 {ỹ}{{\~y}}1 {ý}{{\'y}}1 {ỵ}{{\d{y}}}1
-         {đ}{{\d{d}}}1 {Đ}{{\d{D}}}1 % Hỗ trợ tiếng Việt trong comment code (cơ bản)
+         {đ}{{\d{d}}}1 {Đ}{{\d{D}}}1
 }
 
 \lstset{style=mystyle}
@@ -62,65 +65,56 @@
 \usepackage{graphicx}
 \usepackage{tabularx}
 \usepackage{booktabs}
-\usepackage{indentfirst} % Thụt đầu dòng đoạn đầu tiên
-\usepackage{enumitem} % Để chỉnh format danh sách
+\usepackage{indentfirst} 
+\usepackage{enumitem} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --- ĐỊNH DẠNG TRANG (PAGE LAYOUT) ---
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Yêu cầu: Trái 3.5, Phải 2, Trên 3.5, Dưới 3
 \usepackage{geometry}
 \geometry{
     a4paper,
-    top=3.5cm, 
-    bottom=3cm, 
-    left=3.5cm, 
-    right=2cm
+    top=2cm, 
+    bottom=2cm, 
+    inner=2.5cm, 
+    outer=2cm    
 }
 
-% Yêu cầu: Dãn dòng 1.5 lines
 \usepackage{setspace}
 \onehalfspacing 
 
-% Yêu cầu: Before 0pt, After 0pt (Không giãn đoạn)
 \setlength{\parskip}{0pt}
-\setlength{\parindent}{1.27cm} % Thụt đầu dòng chuẩn
+\setlength{\parindent}{1.27cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --- ĐỊNH DẠNG TIÊU ĐỀ (TITLES) ---
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Sử dụng gói titlesec để tùy biến sâu hơn
 \usepackage{titlesec}
 
-% 1. Tiêu đề Cấp 1 (CHƯƠNG): Font 14, In hoa, Đậm, Căn giữa
 \titleformat{\chapter}[display]
-  {\centering\normalfont\bfseries\fontsize{14pt}{16.8pt}\selectfont} % Format
-  {\chaptertitlename\ \thechapter} % Label (CHƯƠNG 1)
-  {0pt} % Khoảng cách giữa Label và Title
-  {\MakeUppercase} % In hoa tên chương
+  {\centering\normalfont\bfseries\fontsize{14pt}{16.8pt}\selectfont} 
+  {\chaptertitlename\ \thechapter} 
+  {0pt} 
+  {\MakeUppercase} 
 
-\titlespacing*{\chapter}{0pt}{-10pt}{20pt} % Căn chỉnh khoảng cách trên dưới chương
+\titlespacing*{\chapter}{0pt}{-10pt}{20pt}
 
-% 2. Tiêu đề Cấp 2 (1.1): Font 13, Thường, Đậm, Căn trái
 \titleformat{\section}
   {\normalfont\bfseries\fontsize{13pt}{15.6pt}\selectfont}
   {\thesection}{1em}{}
   
-\titlespacing*{\section}{0pt}{6pt}{0pt} % Before/After nhỏ gọn
+\titlespacing*{\section}{0pt}{6pt}{0pt}
 
-% 3. Tiêu đề Cấp 3 (1.1.1): Font 13, Thường, Nghiêng, Căn trái
 \titleformat{\subsection}
-  {\normalfont\bfseries\fontsize{13pt}{15.6pt}\selectfont} % Đậm, không nghiêng
+  {\normalfont\bfseries\fontsize{13pt}{15.6pt}\selectfont} 
   {\thesubsection}{1em}{}
 
 \titlespacing*{\subsection}{0pt}{6pt}{0pt}
 
-% 4. Tiêu đề Cấp 4 (a. Tên tiêu đề): Font 13, Thường, Căn trái
 \titleformat{\subsubsection}
   {\normalfont\fontsize{13pt}{15.6pt}\selectfont}
   {\thesubsubsection}{1em}{}
 
-% Đổi đánh số 1.1.1.1 thành a. b. c.
 \renewcommand{\thesubsubsection}{\alph{subsubsection}.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,35 +123,31 @@
 \usepackage{caption}
 \usepackage{float} 
 
-% Cấu hình chung cho Caption: Font 13
 \DeclareCaptionFont{size13}{\fontsize{13pt}{15.6pt}\selectfont}
 
-% Yêu cầu Bảng: Tiêu đề trên, Căn trái, Đậm, After 6pt
 \captionsetup[table]{
     position=top,
-    justification=raggedright, % Căn trái
-    singlelinecheck=false,     % Giữ căn trái ngay cả khi caption ngắn
-    labelfont={bf, size13},    % Chữ "Bảng 1.1" đậm, 13pt
-    textfont={bf, size13},     % Nội dung đậm, 13pt
-    skip=6pt                   % Layout After 6 (khoảng cách đến bảng)
+    justification=raggedright, 
+    singlelinecheck=false,     
+    labelfont={bf, size13},    
+    textfont={bf, size13},     
+    skip=6pt                   
 }
 
-% Yêu cầu Hình: Tiêu đề dưới, Căn giữa, Đậm, Before 6pt
 \captionsetup[figure]{
     position=bottom,
-    justification=centering,   % Căn giữa
+    justification=centering,   
     labelfont={bf, size13},
     textfont={bf, size13},
-    skip=6pt                   % Layout Before 6 (khoảng cách từ hình đến caption)
+    skip=6pt                   
 }
 
-% Định nghĩa lệnh \mysource để ghi nguồn: Căn phải, nghiêng, font 12
 \newcommand{\mysource}[1]{%
-    \vspace{0pt} % Khoảng cách nhỏ với đối tượng phía trên
+    \vspace{0pt} 
     \begin{flushright}
         \fontsize{12pt}{14.4pt}\selectfont \itshape Nguồn: #1
     \end{flushright}
-    \vspace{6pt} % Layout After 6
+    \vspace{6pt} 
 }
 
 % Đánh số theo chương (Hình 2.1, Bảng 3.2)
@@ -165,11 +155,11 @@
 \counterwithin{figure}{chapter}
 \counterwithin{table}{chapter}
 
-% Đổi tên mặc định
 \addto\captionsvietnamese{%
   \renewcommand{\figurename}{Hình}%
   \renewcommand{\tablename}{Bảng}%
   \renewcommand{\chaptername}{CHƯƠNG}
+  \renewcommand{\listfigurename}{DANH MỤC CÁC HÌNH VẼ} 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,17 +168,17 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[C]{\thepage} % Số trang ở giữa dưới
+\fancyfoot[C]{\thepage} 
 \renewcommand{\headrulewidth}{0pt}
 
-% Gói vẽ khung bìa
 \usepackage{tikz}
 \usetikzlibrary{calc}
 
-% Tài liệu tham khảo
-\usepackage[backend=biber, style=numeric]{biblatex}
-\addbibresource{refs.bib}
-\usepackage[colorlinks=true, linkcolor=blue, urlcolor=cyan]{hyperref}
+% [FIX QUAN TRỌNG]: Thêm 'final' để ÉP BUỘC tạo link kể cả khi đang ở chế độ 'draft'
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=cyan, final]{hyperref}
+
+% Lệnh gom nội dung lên trên để tránh khoảng trắng
+\raggedbottom
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --- BẮT ĐẦU TÀI LIỆU ---
@@ -199,15 +189,25 @@
     \include{sections/00_trangbia}
 \end{titlepage}
 
-\pagenumbering{roman} % Đánh số La Mã cho phần đầu
+% Phần đầu: Đánh số La Mã (i, ii, iii)
+\pagenumbering{roman} 
 
 \input{sections/01_bangphanchiacongviec}
 \include{sections/02_boicanh}
 \include{sections/03_mota}
+
+% 1. Mục lục chính
 \tableofcontents
+
+% 2. Danh mục các hình vẽ
+\listoffigures
+\addcontentsline{toc}{chapter}{DANH MỤC CÁC HÌNH VẼ}
+
+% 3. Danh mục từ viết tắt
 \input{sections/04_vietat}
 
-\pagenumbering{arabic} % Đánh số 1, 2, 3 cho nội dung chính
+% Phần nội dung: Đánh số 1, 2, 3 từ Chương 1
+\pagenumbering{arabic} 
 
 \include{sections/05_mordau}
 \include{sections/06_chuong1}
@@ -215,8 +215,7 @@
 \include{sections/08_chuong3}
 \include{sections/09_ketluan}
 
-\printbibliography[heading=bibintoc, title={TÀI LIỆU THAM KHẢO}]
-\appendix
-\input{sections/10_tailieuthamkhaovaphuluc}
+% Tài liệu tham khảo thủ công
+\include{sections/10_tailieuthamkhaovaphuluc}
 
 \end{document}

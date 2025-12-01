@@ -52,8 +52,8 @@ Sơ đồ dưới đây mô tả tổng quan các tác nhân và chức năng c�
 
 \begin{figure}[H]
     \centering
-    % Thay hình ảnh thực tế của bạn vào đây
-    \includegraphics[width=0.9\textwidth]{img/mau.png} 
+    % height=0.4\textheight: Giới hạn chiều cao để 1 trang chứa được 2 hình
+    \includegraphics[width=0.9\textwidth, height=0.4\textheight, keepaspectratio]{img/mau.png} 
     \caption{Sơ đồ Use Case tổng quát hệ thống StuShare}
     \label{fig:usecase_tongquat}
 \end{figure}
@@ -107,98 +107,210 @@ Sơ đồ dưới đây mô tả tổng quan các tác nhân và chức năng c�
 \section{Thiết kế luồng hoạt động (Activity Diagram)}
 Dưới đây là các sơ đồ hoạt động mô tả quy trình nghiệp vụ của 9 chức năng chính trong hệ thống.
 
-% --- 9 ACTIVITY DIAGRAMS ---
-
+% 2.3.1
 \subsection{Sơ đồ hoạt động chức năng Đăng ký}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Đăng ký tài khoản} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/dangki.png} 
+    \caption{Activity Diagram - Đăng ký tài khoản} 
+\end{figure}
 
+% 2.3.2
 \subsection{Sơ đồ hoạt động chức năng Đăng nhập}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Đăng nhập} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/dangnhap.png} 
+    \caption{Activity Diagram - Đăng nhập} 
+\end{figure}
 
+% 2.3.3
 \subsection{Sơ đồ hoạt động chức năng Tìm kiếm tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tìm kiếm tài liệu} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/timkiemtailieu.png} 
+    \caption{Activity Diagram - Tìm kiếm tài liệu} 
+\end{figure}
 
-\subsection{Sơ đồ hoạt động chức năng Xem chi tiết tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Xem chi tiết} \end{figure}
+% 2.3.4
+\subsection{Sơ đồ hoạt động chức năng Báo cáo vi phạm}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/baocaovipham.png} 
+    \caption{Activity Diagram - Báo cáo vi phạm} 
+\end{figure}
 
+% 2.3.5
 \subsection{Sơ đồ hoạt động chức năng Tải xuống tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tải xuống tài liệu} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/taivetailieu.png} 
+    \caption{Activity Diagram - Tải xuống tài liệu} 
+\end{figure}
 
+% 2.3.6
 \subsection{Sơ đồ hoạt động chức năng Tải lên tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tải lên tài liệu} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/tailentailieu.png} 
+    \caption{Activity Diagram - Tải lên tài liệu} 
+\end{figure}
 
-\subsection{Sơ đồ hoạt động chức năng Cập nhật hồ sơ}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Cập nhật hồ sơ} \end{figure}
+% 2.3.7
+\subsection{Sơ đồ hoạt động chức năng Cập nhật bảng xếp hạng}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/capnhatbangxemhang.png} 
+    \caption{Activity Diagram - Cập nhật bảng xếp hạng} 
+\end{figure}
 
+% 2.3.8
 \subsection{Sơ đồ hoạt động chức năng Tạo yêu cầu tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tạo yêu cầu tài liệu} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/yeucautailieu.png} 
+    \caption{Activity Diagram - Tạo yêu cầu tài liệu} 
+\end{figure}
 
+% 2.3.9
 \subsection{Sơ đồ hoạt động chức năng Quên mật khẩu}
-\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Quên mật khẩu} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/activity/quenmatkhau.png} 
+    \caption{Activity Diagram - Quên mật khẩu} 
+\end{figure}
 
 
 \section{Thiết kế tương tác (Sequence Diagram)}
-Mục này trình bày chi tiết sự tương tác giữa các đối tượng trong hệ thống thông qua 16 sơ đồ tuần tự.
+Mục này trình bày chi tiết sự tương tác giữa các đối tượng trong hệ thống thông qua các sơ đồ tuần tự.
 
-% --- 16 SEQUENCE DIAGRAMS ---
+% 1. Báo cáo vi phạm
+\subsection{Sơ đồ tuần tự Báo cáo vi phạm}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/baocaovipham.png} 
+    \caption{Sequence Diagram - Báo cáo vi phạm} 
+\end{figure}
 
-\subsection{Sơ đồ tuần tự Đăng ký}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đăng ký} \end{figure}
+% 2. Bỏ lưu tài liệu
+\subsection{Sơ đồ tuần tự Bỏ lưu tài liệu}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/boluutailieu.png} 
+    \caption{Sequence Diagram - Bỏ lưu tài liệu} 
+\end{figure}
 
-\subsection{Sơ đồ tuần tự Đăng nhập}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đăng nhập} \end{figure}
+% 3. Chỉnh sửa thông tin
+\subsection{Sơ đồ tuần tự Chỉnh sửa thông tin}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/chinhsuathongtin.png} 
+    \caption{Sequence Diagram - Chỉnh sửa thông tin} 
+\end{figure}
 
+% 4. Đăng ký thành công
+\subsection{Sơ đồ tuần tự Đăng ký thành công}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/dangkithanhcong.png} 
+    \caption{Sequence Diagram - Đăng ký thành công} 
+\end{figure}
+
+% 5. Đăng nhập thành công
+\subsection{Sơ đồ tuần tự Đăng nhập thành công}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/dangnhapthanhcong.png} 
+    \caption{Sequence Diagram - Đăng nhập thành công} 
+\end{figure}
+
+% 6. Đăng nhập thất bại
+\subsection{Sơ đồ tuần tự Đăng nhập thất bại}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/dangnhapthatbai.png} 
+    \caption{Sequence Diagram - Đăng nhập thất bại} 
+\end{figure}
+
+% 7. Đăng xuất
 \subsection{Sơ đồ tuần tự Đăng xuất}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đăng xuất} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/dangxuat.png} 
+    \caption{Sequence Diagram - Đăng xuất} 
+\end{figure}
 
-\subsection{Sơ đồ tuần tự Quên mật khẩu}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Quên mật khẩu} \end{figure}
-
-\subsection{Sơ đồ tuần tự Xem danh sách tài liệu (Home)}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem danh sách Home} \end{figure}
-
-\subsection{Sơ đồ tuần tự Xem chi tiết tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem chi tiết} \end{figure}
-
-\subsection{Sơ đồ tuần tự Tìm kiếm tài liệu}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tìm kiếm} \end{figure}
-
-\subsection{Sơ đồ tuần tự Lọc tài liệu theo Tag}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Lọc theo Tag} \end{figure}
-
-\subsection{Sơ đồ tuần tự Tải xuống tài liệu (Download)}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tải xuống tài liệu} \end{figure}
-
-\subsection{Sơ đồ tuần tự Tải lên tài liệu (Upload)}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tải lên tài liệu} \end{figure}
-
-\subsection{Sơ đồ tuần tự Xem thông tin cá nhân}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem Profile} \end{figure}
-
-\subsection{Sơ đồ tuần tự Cập nhật thông tin cá nhân}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Cập nhật Profile} \end{figure}
-
+% 8. Đổi mật khẩu
 \subsection{Sơ đồ tuần tự Đổi mật khẩu}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đổi mật khẩu} \end{figure}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/doimk.png} 
+    \caption{Sequence Diagram - Đổi mật khẩu} 
+\end{figure}
 
-\subsection{Sơ đồ tuần tự Xem Bảng xếp hạng}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem Leaderboard} \end{figure}
+% 9. Lưu tài liệu
+\subsection{Sơ đồ tuần tự Lưu tài liệu}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/luutailieu.png} 
+    \caption{Sequence Diagram - Lưu tài liệu} 
+\end{figure}
 
-\subsection{Sơ đồ tuần tự Tạo yêu cầu tài liệu mới}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tạo Request} \end{figure}
+% 10. Quên mật khẩu
+\subsection{Sơ đồ tuần tự Quên mật khẩu}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/quyenmk.png} 
+    \caption{Sequence Diagram - Quên mật khẩu} 
+\end{figure}
 
-\subsection{Sơ đồ tuần tự Xem danh sách yêu cầu}
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem danh sách Request} \end{figure}
+% 11. Tải tài liệu thành công
+\subsection{Sơ đồ tuần tự Tải tài liệu thành công}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/tailenthanhcong.png} 
+    \caption{Sequence Diagram - Tải tài liệu thành công} 
+\end{figure}
+
+% 12. Tải tài liệu không thành công
+\subsection{Sơ đồ tuần tự Tải tài liệu không thành công}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/tailen0thanhcong.png} 
+    \caption{Sequence Diagram - Tải tài liệu không thành công} 
+\end{figure}
+
+% 13. Tải về tài liệu
+\subsection{Sơ đồ tuần tự Tải về tài liệu}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/taivetailieu.png} 
+    \caption{Sequence Diagram - Tải về tài liệu} 
+\end{figure}
+
+% 14. Tìm kiếm - có kết quả
+\subsection{Sơ đồ tuần tự Tìm kiếm - có kết quả}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/timkiemcokq.png} 
+    \caption{Sequence Diagram - Tìm kiếm có kết quả} 
+\end{figure}
+
+% 15. Yêu cầu tài liệu
+\subsection{Sơ đồ tuần tự Yêu cầu tài liệu}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.85\textwidth, height=0.4\textheight, keepaspectratio]{img/yeucautailieu.png} 
+    \caption{Sequence Diagram - Yêu cầu tài liệu} 
+\end{figure}
 
 
 \section{Thiết kế Cơ sở dữ liệu}
 
 \subsection{Sơ đồ quan hệ thực thể (ERD)}
 Mô hình dữ liệu của hệ thống bao gồm các thực thể chính: Người dùng, Tài liệu, Thông báo và Yêu cầu tài liệu.
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/mau.png} 
+    \includegraphics[width=0.9\textwidth, height=0.4\textheight, keepaspectratio]{img/mau.png} 
     \caption{Sơ đồ quan hệ thực thể (ERD)}
 \end{figure}
 
@@ -278,7 +390,8 @@ Lưu trữ các thông báo gửi đến người dùng.
 \end{table}
 
 \section{Thiết kế Giao diện}
-Hệ thống sử dụng công nghệ \textbf{Jetpack Compose} để xây dựng giao diện người dùng (UI), đảm bảo tính hiện đại và mượt mà. Các màn hình chính bao gồm:
+Hệ thống sử dụng công nghệ \textbf{Jetpack Compose} để xây dựng giao diện người dùng (UI), đảm bảo tính hiện đại và mượt mà.
+Các màn hình chính bao gồm:
 \begin{itemize}
     \item \textbf{Màn hình Auth:} Login, Register với các trường nhập liệu và validate lỗi.
     \item \textbf{Màn hình Home:} Sử dụng LazyColumn để hiển thị danh sách tài liệu cuộn vô tận.
@@ -287,6 +400,6 @@ Hệ thống sử dụng công nghệ \textbf{Jetpack Compose} để xây dựng
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/mau.png} 
+    \includegraphics[width=0.9\textwidth, height=0.4\textheight, keepaspectratio]{img/mau.png} 
     \caption{Sơ đồ luồng màn hình (Screen Flow)}
 \end{figure}

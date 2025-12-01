@@ -1,0 +1,292 @@
+% Tệp: sections/07_chuong2.tex
+
+\chapter{PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG}
+\label{ch:phantichthietke}
+
+Chương này trình bày chi tiết về các yêu cầu chức năng và phi chức năng của hệ thống, đồng thời mô tả các bản thiết kế về Use Case, luồng hoạt động, tương tác và cơ sở dữ liệu của ứng dụng StuShare.
+
+\section{Phân tích yêu cầu hệ thống}
+
+\subsection{Yêu cầu chức năng}
+Dựa trên khảo sát nhu cầu thực tế của sinh viên, hệ thống StuShare cần đáp ứng các nhóm chức năng chính sau:
+
+\begin{itemize}
+    \item \textbf{Nhóm chức năng Xác thực \& Tài khoản:}
+    \begin{itemize}
+        \item Đăng ký tài khoản mới (Email, Số điện thoại).
+        \item Đăng nhập hệ thống (Email/Pass, Google Sign-In).
+        \item Quên mật khẩu và khôi phục qua Email.
+        \item Cập nhật thông tin cá nhân (Avatar, Tên, Chuyên ngành).
+        \item Đổi mật khẩu và bảo mật tài khoản.
+    \end{itemize}
+
+    \item \textbf{Nhóm chức năng Quản lý Tài liệu:}
+    \begin{itemize}
+        \item Xem danh sách tài liệu mới nhất, tài liệu đề thi.
+        \item Xem chi tiết thông tin tài liệu (Tên, mô tả, tác giả, lượt tải).
+        \item Tải lên tài liệu mới (Upload file PDF, Word) kèm tiêu đề và thẻ (Tag).
+        \item Tải xuống tài liệu về thiết bị.
+    \end{itemize}
+
+    \item \textbf{Nhóm chức năng Tương tác \& Tìm kiếm:}
+    \begin{itemize}
+        \item Tìm kiếm tài liệu theo từ khóa.
+        \item Lọc tài liệu theo thẻ (Tag).
+        \item Xem bảng xếp hạng thành viên tích cực.
+        \item Gửi yêu cầu tìm tài liệu (Request Document).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Yêu cầu phi chức năng}
+\begin{itemize}
+    \item \textbf{Hiệu năng:} Ứng dụng phản hồi nhanh, thời gian tải danh sách tài liệu dưới 2 giây trong điều kiện mạng ổn định.
+    \item \textbf{Bảo mật:} Mật khẩu người dùng được mã hóa. Sử dụng Token để xác thực phiên làm việc. Dữ liệu cá nhân được bảo vệ theo quy định.
+    \item \textbf{Giao diện (UI/UX):} Thiết kế hiện đại, thân thiện, dễ sử dụng, hỗ trợ giao diện Sáng/Tối (Light/Dark Mode).
+    \item \textbf{Độ tin cậy:} Hệ thống hoạt động ổn định 24/7, có cơ chế xử lý lỗi khi mất kết nối mạng (Offline Mode cơ bản).
+\end{itemize}
+
+\section{Thiết kế Use Case}
+
+\subsection{Sơ đồ Use Case tổng quát}
+Sơ đồ dưới đây mô tả tổng quan các tác nhân và chức năng của hệ thống StuShare.
+
+\begin{figure}[H]
+    \centering
+    % Thay hình ảnh thực tế của bạn vào đây
+    \includegraphics[width=0.9\textwidth]{img/mau.png} 
+    \caption{Sơ đồ Use Case tổng quát hệ thống StuShare}
+    \label{fig:usecase_tongquat}
+\end{figure}
+
+\subsection{Đặc tả các Use Case chính}
+
+\begin{table}[H]
+    \centering
+    \caption{Đặc tả Use Case "Đăng nhập"}
+    \begin{tabular}{|p{4cm}|p{10cm}|}
+        \hline
+        \textbf{Tên Use Case} & \textbf{Đăng nhập hệ thống} \\
+        \hline
+        \textbf{Tác nhân} & Sinh viên (User) \\
+        \hline
+        \textbf{Mục đích} & Cho phép người dùng truy cập vào các chức năng yêu cầu xác thực. \\
+        \hline
+        \textbf{Luồng sự kiện chính} & 
+        1. User mở ứng dụng, chọn chức năng Đăng nhập. \newline
+        2. Hệ thống hiển thị form nhập Email/Mật khẩu. \newline
+        3. User nhập thông tin và nhấn "Đăng nhập". \newline
+        4. Hệ thống kiểm tra thông tin qua Firebase Auth. \newline
+        5. Nếu đúng, chuyển hướng vào Trang chủ. \\
+        \hline
+        \textbf{Ngoại lệ} & Nhập sai mật khẩu quá 5 lần -> Khóa tạm thời. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Đặc tả Use Case "Tải lên tài liệu"}
+    \begin{tabular}{|p{4cm}|p{10cm}|}
+        \hline
+        \textbf{Tên Use Case} & \textbf{Tải lên tài liệu} \\
+        \hline
+        \textbf{Tác nhân} & Sinh viên (User) \\
+        \hline
+        \textbf{Điều kiện tiên quyết} & User đã đăng nhập thành công. \\
+        \hline
+        \textbf{Luồng sự kiện chính} & 
+        1. User chọn nút "Upload" từ màn hình chính. \newline
+        2. User chọn file từ thiết bị và điền thông tin (Tiêu đề, Mô tả). \newline
+        3. User nhấn "Đăng tải". \newline
+        4. Hệ thống upload file lên Storage và lưu metadata vào Database. \newline
+        5. Thông báo thành công và cộng điểm cho User. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Thiết kế luồng hoạt động (Activity Diagram)}
+Dưới đây là các sơ đồ hoạt động mô tả quy trình nghiệp vụ của 9 chức năng chính trong hệ thống.
+
+% --- 9 ACTIVITY DIAGRAMS ---
+
+\subsection{Sơ đồ hoạt động chức năng Đăng ký}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Đăng ký tài khoản} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Đăng nhập}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Đăng nhập} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Tìm kiếm tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tìm kiếm tài liệu} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Xem chi tiết tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Xem chi tiết} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Tải xuống tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tải xuống tài liệu} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Tải lên tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tải lên tài liệu} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Cập nhật hồ sơ}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Cập nhật hồ sơ} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Tạo yêu cầu tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Tạo yêu cầu tài liệu} \end{figure}
+
+\subsection{Sơ đồ hoạt động chức năng Quên mật khẩu}
+\begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{img/mau.png} \caption{Activity Diagram - Quên mật khẩu} \end{figure}
+
+
+\section{Thiết kế tương tác (Sequence Diagram)}
+Mục này trình bày chi tiết sự tương tác giữa các đối tượng trong hệ thống thông qua 16 sơ đồ tuần tự.
+
+% --- 16 SEQUENCE DIAGRAMS ---
+
+\subsection{Sơ đồ tuần tự Đăng ký}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đăng ký} \end{figure}
+
+\subsection{Sơ đồ tuần tự Đăng nhập}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đăng nhập} \end{figure}
+
+\subsection{Sơ đồ tuần tự Đăng xuất}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đăng xuất} \end{figure}
+
+\subsection{Sơ đồ tuần tự Quên mật khẩu}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Quên mật khẩu} \end{figure}
+
+\subsection{Sơ đồ tuần tự Xem danh sách tài liệu (Home)}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem danh sách Home} \end{figure}
+
+\subsection{Sơ đồ tuần tự Xem chi tiết tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem chi tiết} \end{figure}
+
+\subsection{Sơ đồ tuần tự Tìm kiếm tài liệu}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tìm kiếm} \end{figure}
+
+\subsection{Sơ đồ tuần tự Lọc tài liệu theo Tag}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Lọc theo Tag} \end{figure}
+
+\subsection{Sơ đồ tuần tự Tải xuống tài liệu (Download)}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tải xuống tài liệu} \end{figure}
+
+\subsection{Sơ đồ tuần tự Tải lên tài liệu (Upload)}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tải lên tài liệu} \end{figure}
+
+\subsection{Sơ đồ tuần tự Xem thông tin cá nhân}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem Profile} \end{figure}
+
+\subsection{Sơ đồ tuần tự Cập nhật thông tin cá nhân}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Cập nhật Profile} \end{figure}
+
+\subsection{Sơ đồ tuần tự Đổi mật khẩu}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Đổi mật khẩu} \end{figure}
+
+\subsection{Sơ đồ tuần tự Xem Bảng xếp hạng}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem Leaderboard} \end{figure}
+
+\subsection{Sơ đồ tuần tự Tạo yêu cầu tài liệu mới}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Tạo Request} \end{figure}
+
+\subsection{Sơ đồ tuần tự Xem danh sách yêu cầu}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{img/mau.png} \caption{Sequence Diagram - Xem danh sách Request} \end{figure}
+
+
+\section{Thiết kế Cơ sở dữ liệu}
+
+\subsection{Sơ đồ quan hệ thực thể (ERD)}
+Mô hình dữ liệu của hệ thống bao gồm các thực thể chính: Người dùng, Tài liệu, Thông báo và Yêu cầu tài liệu.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/mau.png} 
+    \caption{Sơ đồ quan hệ thực thể (ERD)}
+\end{figure}
+
+\subsection{Mô tả chi tiết các bảng dữ liệu}
+Dựa trên kiến trúc Room Database và Firebase Firestore đã cài đặt, dưới đây là chi tiết các bảng:
+
+\subsubsection{Bảng Người dùng (UserEntity / users collection)}
+Lưu trữ thông tin cá nhân và vai trò của người dùng trong hệ thống.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|p{5cm}|}
+        \hline
+        \textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Ràng buộc} & \textbf{Mô tả} \\
+        \hline
+        id & String & PK & Mã định danh duy nhất (UID từ Firebase) \\
+        \hline
+        email & String & Unique, Not Null & Địa chỉ email đăng nhập \\
+        \hline
+        fullName & String & Not Null & Họ và tên hiển thị \\
+        \hline
+        studentId & String & Nullable & Mã số sinh viên \\
+        \hline
+        avatarUrl & String & Nullable & Đường dẫn ảnh đại diện \\
+        \hline
+        points & Int & Default 0 & Điểm thưởng đóng góp \\
+        \hline
+    \end{tabular}
+    \mysource{Mã nguồn lớp UserEntity.kt}
+\end{table}
+
+\subsubsection{Bảng Tài liệu (Document / documents collection)}
+Lưu trữ metadata của các tài liệu được chia sẻ.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|p{5cm}|}
+        \hline
+        \textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Ràng buộc} & \textbf{Mô tả} \\
+        \hline
+        id & String & PK & Mã tài liệu \\
+        \hline
+        title & String & Not Null & Tiêu đề tài liệu \\
+        \hline
+        description & String & Nullable & Mô tả ngắn gọn \\
+        \hline
+        fileUrl & String & Not Null & Link tải file (Firebase Storage) \\
+        \hline
+        fileType & String & Not Null & Định dạng (PDF, DOCX...) \\
+        \hline
+        authorId & String & FK (User) & Người đăng tải \\
+        \hline
+        downloadCount & Int & Default 0 & Số lượt tải xuống \\
+        \hline
+    \end{tabular}
+    \mysource{Mã nguồn lớp Document.kt}
+\end{table}
+
+\subsubsection{Bảng Thông báo (NotificationEntity)}
+Lưu trữ các thông báo gửi đến người dùng.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|p{5cm}|}
+        \hline
+        \textbf{Tên trường} & \textbf{Kiểu dữ liệu} & \textbf{Ràng buộc} & \textbf{Mô tả} \\
+        \hline
+        id & Int & PK, Auto Inc & Mã thông báo (Local DB) \\
+        \hline
+        title & String & Not Null & Tiêu đề thông báo \\
+        \hline
+        message & String & Not Null & Nội dung thông báo \\
+        \hline
+        isRead & Boolean & Default False & Trạng thái đã xem \\
+        \hline
+        timestamp & Long & Not Null & Thời gian nhận \\
+        \hline
+    \end{tabular}
+    \mysource{Mã nguồn lớp NotificationEntity.kt}
+\end{table}
+
+\section{Thiết kế Giao diện}
+Hệ thống sử dụng công nghệ \textbf{Jetpack Compose} để xây dựng giao diện người dùng (UI), đảm bảo tính hiện đại và mượt mà. Các màn hình chính bao gồm:
+\begin{itemize}
+    \item \textbf{Màn hình Auth:} Login, Register với các trường nhập liệu và validate lỗi.
+    \item \textbf{Màn hình Home:} Sử dụng LazyColumn để hiển thị danh sách tài liệu cuộn vô tận.
+    \item \textbf{Màn hình Detail:} Hiển thị thông tin chi tiết và nút Download Floating Action Button.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/mau.png} 
+    \caption{Sơ đồ luồng màn hình (Screen Flow)}
+\end{figure}

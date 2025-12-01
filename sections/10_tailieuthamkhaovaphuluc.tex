@@ -1,0 +1,138 @@
+% Tệp: sections/10_tailieuthamkhaovaphuluc.tex
+
+% ============================================================
+% PHẦN 1: TÀI LIỆU THAM KHẢO (Lấy tự động từ refs.bib)
+% ============================================================
+
+% Lệnh \nocite{*} buộc in TOÀN BỘ danh sách trong refs.bib ra
+% ngay cả khi bạn chưa trích dẫn (\cite) chúng trong bài viết.
+\nocite{*}
+
+% In ra danh sách tài liệu tham khảo
+% heading=bibintoc: Tự động thêm dòng "Tài liệu tham khảo" vào Mục lục
+\printbibliography[heading=bibintoc, title={TÀI LIỆU THAM KHẢO}]
+
+% ============================================================
+% PHẦN 2: PHỤ LỤC
+% ============================================================
+\appendix % Chuyển đánh số chương thành A, B, C...
+
+% --- PHỤ LỤC A: MÃ NGUỒN ---
+\chapter{MỘT SỐ MÃ NGUỒN QUAN TRỌNG}
+\label{app:source_code}
+
+Trong phần này, nhóm xin trình bày một số đoạn mã nguồn cốt lõi của ứng dụng StuShare, bao gồm cấu hình hệ thống và các lớp xử lý dữ liệu chính.
+
+\section{Cấu hình xây dựng ứng dụng (Build Gradle)}
+Dưới đây là cấu hình các thư viện và phiên bản SDK sử dụng trong dự án:
+
+% Chèn code từ file: app/build.gradle.kts
+\begin{lstlisting}[language=Java, caption={Cấu hình module app (build.gradle.kts)}]
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    // Các plugin khác
+}
+
+android {
+    namespace = "com.example.stushare"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.example.stushare"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+    // ...
+}
+\end{lstlisting}
+
+\section{Lớp xử lý dữ liệu tài liệu (Document Repository)}
+Lớp này chịu trách nhiệm gọi API và xử lý luồng dữ liệu cho các tài liệu học tập.
+
+\begin{lstlisting}[language=Java, caption={Triển khai DocumentRepositoryImpl.kt}]
+class DocumentRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val documentDao: DocumentDao
+) : DocumentRepository {
+
+    override suspend fun getDocuments(): Flow<Resource<List<Document>>> = flow {
+        emit(Resource.Loading())
+        try {
+            // Lấy dữ liệu từ Remote API
+            val response = apiService.getAllDocuments()
+        
+            if (response.isSuccessful) {
+                // Lưu vào Local DB và emit success
+                emit(Resource.Success(response.body()))
+            } else {
+                emit(Resource.Error("Lỗi kết nối máy chủ"))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage ?: "Lỗi không xác định"))
+        }
+    }
+}
+\end{lstlisting}
+
+\section{Màn hình chi tiết tài liệu (UI)}
+Xử lý giao diện hiển thị chi tiết tài liệu cho sinh viên.
+
+\begin{lstlisting}[language=Java, caption={Đoạn mã Composable cho màn hình chi tiết}]
+@Composable
+fun DocumentDetailScreen(
+    viewModel: DocumentDetailViewModel = hiltViewModel(),
+    onNavigateBack: () -> Unit
+) {
+    val state by viewModel.uiState.collectAsState()
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Chi tiết tài liệu") },
+                navigationIcon = {
+                    IconButton(onClick = onNavigateBack) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = null)
+                    }
+                }
+           )
+        }
+    ) { padding ->
+        Column(modifier = Modifier.padding(padding)) {
+            // Nội dung chi tiết
+            Text(text = state.documentTitle, style = MaterialTheme.typography.h6)
+            Text(text = state.description)
+        }
+    }
+}
+\end{lstlisting}
+
+% --- PHỤ LỤC B: HÌNH ẢNH ---
+\chapter{MỘT SỐ HÌNH ẢNH GIAO DIỆN}
+\label{app:images}
+
+\section{Màn hình giới thiệu (Onboarding)}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{img/mau.png} 
+        \caption{Màn hình chào 1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{img/mau.png}
+        \caption{Màn hình chào 2}
+    \end{minipage}
+\end{figure}
+
+\section{Logo ứng dụng}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{img/mau.png} 
+    \caption{Logo chính thức của ứng dụng StuShare}
+\end{figure}
